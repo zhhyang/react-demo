@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+//用户在表单填入的内容，属于用户跟组件的互动，所以不能用 this.props 读取
+
+<div id="example"></div>
+<div id="example1"></div>
+
+
+
+<script type="text/babel">
+
+    var Input = React.createClass({
+        getInitialState :function(){
+            return {value : 'Hello World!'};
+        },
+        handleChange : function(event){
+            this.setState({
+                value:event.target.value
+            })
+        },
+        render:function(){
+           var value = this.state.value;
+            return (
+                    <div>
+                    <input type="text" value={value} onChange={this.handleChange} />
+                    <p>{value}</p>
+                    </div>
+            );
+        }
+    });
+
+    var Textarea = React.createClass({
+        getInitialState :function(){
+            return {value:'Hello World!'};
+        },
+        handleChange:function(event){
+            this.setState({
+                value:event.target.value
+            })
+        },
+        render:function(){
+
+            var value=this.state.value;
+            return (
+                    <div>
+                    <textarea value={value} onChange={this.handleChange} />
+                    <p>{value}</p>
+                    </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <Input />,
+            document.getElementById('example')
+    )
+
+    ReactDOM.render(
+    <Textarea />,
+            document.getElementById('example1')
+    )
+</script>
+
+</body>
+</html>
